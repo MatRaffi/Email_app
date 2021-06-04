@@ -1,0 +1,2 @@
+rootProject.name = "Email app"
+include ':app'
