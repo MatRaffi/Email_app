@@ -40,7 +40,8 @@ public class SignupActivity extends AppCompatActivity {
                 } else {
                     if (pass.equals(repass)) {
                         Boolean checkuser = DB.checkusername(user);
-                        if (checkuser == false) {
+                        Boolean checkmail = DB.checkemail(mail);
+                        if (checkuser == false && checkmail==false) {
                             Boolean insert = DB.insertUser(user, pass, mail);
 
                             if ((insert == true) && (mail.contains("@")) && (mail.contains(".com")))

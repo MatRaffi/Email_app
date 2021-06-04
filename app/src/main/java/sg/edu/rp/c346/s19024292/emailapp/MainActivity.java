@@ -37,9 +37,11 @@ public class MainActivity extends AppCompatActivity {
 //        al = db.getContactById(id);
 
         aa = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,al);
+//
+//
+//
 
 
-        lv.setAdapter(aa);
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,14 +55,9 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this,email + id,Toast.LENGTH_SHORT).show();
 
                         db.insertContact(email, id);
-                        Contact newContact = new Contact(email);
-                        newContact.setEmail(email);
-
-                        al.clear();
                         al = db.getContactById(id);
-
                         aa.notifyDataSetChanged();
-
+                        lv.setAdapter(aa);
                     } else {
                         Toast.makeText(MainActivity.this,"Please check that the contact email contains '@' and 'com'",Toast.LENGTH_SHORT).show();
                     }

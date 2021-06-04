@@ -96,10 +96,10 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public ArrayList<String> getContactById(int userid) {
+    public ArrayList<String> getContactById(int user_id) {
         ArrayList<String> contacts = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT contacts FROM contact WHERE userid= ?",new String[]{String.valueOf(userid)});
+        Cursor cursor = db.rawQuery("SELECT contacts FROM contact WHERE user_id= ?",new String[]{String.valueOf(user_id)});
         if (cursor.moveToFirst()) {
             do {
                 String contact = cursor.getString(0);
@@ -115,6 +115,16 @@ public class DBHelper extends SQLiteOpenHelper {
     public Boolean checkusername (String username) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("Select * from user where username = ?",new String[]{username});
+        if (cursor.getCount()>0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Boolean checkemail (String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select * from user where email = ?",new String[]{email});
         if (cursor.getCount()>0) {
             return true;
         } else {
